@@ -37,6 +37,11 @@ ENTRY(clone)
 	cmp.ne	r1, 0		; @child_stack can't be NULL
 	bz	.L__sys_err
 
+#ifdef __HS__
+	ld	r4,[sp]
+	ld	r5,[sp,4]
+	ld	r6,[sp,8]
+#endif
 	; save some of the orig args
 	; r0 containg @fn will be clobbered AFTER syscall (with ret val)
 	; rest are clobbered BEFORE syscall due to different arg ordering
