@@ -42,8 +42,13 @@ typedef struct
 #ifdef __A7__
 #define __ARC_TP_REG	r25
 #elif defined(__HS__)
-#define __ARC_TP_REG	r30
+#define __ARC_TP_REG	r25
 #endif
+
+#ifndef __ARC_TP_REG
+#define __ARC_TP_REG	r25
+#endif
+
 
 .macro THREAD_SELF reg
 	# struct pthread is just ahead of TCB
